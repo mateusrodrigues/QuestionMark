@@ -2,6 +2,7 @@
 using QuestionMark.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -47,6 +48,20 @@ namespace QuestionMark.Controllers
         public PartialViewResult AnswerQuestion()
         {
             return PartialView("_AnswerQuestion");
+        }
+
+        public PartialViewResult Questions()
+        {
+            List<Question> model;
+            using (var db = new ApplicationDbContext())
+            {
+                model = db.Questions
+                    .Include(p => p.Topic)
+                    .Include(p => p.User)
+                    .ToList();
+            }
+
+            return PartialView("_Questions", model);
         }
     }
 }

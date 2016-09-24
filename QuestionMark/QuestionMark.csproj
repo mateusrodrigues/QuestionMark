@@ -253,6 +253,7 @@
     <Content Include="Views\Topics\Index.cshtml" />
     <Content Include="Views\Partials\_NewQuestion.cshtml" />
     <Content Include="Views\Partials\_AnswerQuestion.cshtml" />
+    <Content Include="Views\Partials\_Questions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

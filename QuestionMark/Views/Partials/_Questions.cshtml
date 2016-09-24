@@ -1,0 +1,88 @@
+﻿@model IEnumerable<QuestionMark.Models.Question>
+
+<div class="grid">
+    @foreach (var item in Model)
+    {
+        <div class="grid-item">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h2 class="panel-title">@item.Topic.Title</h2>
+                        </div>
+                        <div class="col-md-3">
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <div class="dropdown">
+                                    <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-sm btn-success">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                        <li><a href="#" data-toggle="modal" data-target="#answerQuestionModal" onclick="requestQuestion(@item.QuestionID)">Answer</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="" style="color: red">Delete</a></li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="flip">
+                    <div class="panel-body" style="height: 140px">
+                        @if (item.Status == QuestionMark.Models.Status.Answered)
+                        {
+                            <div class="card">
+                                <div class="face front">
+                                    <p style="font-size: 9.5pt">
+                                        @if (item.Content.Length > 140)
+                                        {
+                                            @item.Content.Substring(0, 140)
+                                            <span>...</span>
+                                        }
+                                        else
+                                        {
+                                            @item.Content
+                                        }
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <span style="font-size: 9pt; color: gray;">
+                                                Status:
+                                                <span style="color: green"><strong>@item.Status</strong></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="face back">
+                                    <p style="font-size: 9pt">
+                                        <strong>Resposta:</strong> @item.Answer
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <p style="font-size: 9.5pt">
+                                @if (item.Content.Length > 140)
+                                {
+                                    @item.Content.Substring(0, 140)
+                                    <span>...</span>
+                                }
+                                else
+                                {
+                                    @item.Content
+                                }
+                            </p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span style="font-size: 9pt">Status: <span style="color: coral"><strong>@item.Status</strong></span></span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="panel-footer" style="font-size:9pt; color:gray;">@item.PublishedAt <br /> <strong>@item.User.Name</strong></div>
+            </div>
+        </div>
+    }
+</div>
