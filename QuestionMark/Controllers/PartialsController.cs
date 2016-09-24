@@ -11,6 +11,7 @@ namespace QuestionMark.Controllers
     public class PartialsController : Controller
     {
         // GET: Partials
+        [AllowAnonymous]
         public PartialViewResult UserInformation(string email)
         {
             UserInformationViewModel model = new UserInformationViewModel();
@@ -41,6 +42,17 @@ namespace QuestionMark.Controllers
             }
 
             return PartialView("_NewQuestion", question);
+        }
+
+        public PartialViewResult AnswerQuestion(int id)
+        {
+            Question model;
+            using (var db = new ApplicationDbContext())
+            {
+                model = db.Questions.Find(id);
+            }
+
+            return PartialView("_AnswerQuestion", model);
         }
     }
 }

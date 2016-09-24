@@ -188,6 +188,7 @@
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AnswerQuestionViewModel.cs" />
     <Compile Include="ViewModels\UserInformationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -251,6 +252,7 @@
     <Content Include="Views\Topics\Edit.cshtml" />
     <Content Include="Views\Topics\Index.cshtml" />
     <Content Include="Views\Partials\_NewQuestion.cshtml" />
+    <Content Include="Views\Partials\_AnswerQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
