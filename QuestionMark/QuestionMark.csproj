@@ -171,6 +171,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PartialsController.cs" />
+    <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\TopicsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -249,9 +250,11 @@
     <Content Include="Views\Topics\Details.cshtml" />
     <Content Include="Views\Topics\Edit.cshtml" />
     <Content Include="Views\Topics\Index.cshtml" />
+    <Content Include="Views\Partials\_NewQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Questions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

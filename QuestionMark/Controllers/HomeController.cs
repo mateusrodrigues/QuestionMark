@@ -9,14 +9,18 @@ namespace QuestionMark.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext _db;
+
+        public HomeController()
+        {
+            _db = new ApplicationDbContext();
+        }
+
         public ActionResult Index()
         {
             List<Question> model;
 
-            using (var db = new ApplicationDbContext())
-            {
-                model = db.Questions.OrderByDescending(m => m.PublishedAt).Take(100).ToList();
-            }
+            model = _db.Questions.OrderByDescending(m => m.PublishedAt).Take(100).ToList();
 
             return View(model);
         }

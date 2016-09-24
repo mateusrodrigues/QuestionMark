@@ -29,5 +29,18 @@ namespace QuestionMark.Controllers
 
             return PartialView("_UserInformation", model);
         }
+
+        public PartialViewResult NewQuestion()
+        {
+            Question question = new Question();
+
+            using (var db = new ApplicationDbContext())
+            {
+                ViewBag.TopicID = new SelectList(db.Topics.ToList(), "TopicID", "Title");
+                question.UserID = db.Users.FirstOrDefault(m => m.Email.Equals(User.Identity.Name)).Id;
+            }
+
+            return PartialView("_NewQuestion", question);
+        }
     }
 }

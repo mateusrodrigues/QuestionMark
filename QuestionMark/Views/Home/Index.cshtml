@@ -5,33 +5,59 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="modal fade" tabindex="-1" role="dialog" id="newQuestionModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Nova Pergunta</h4>
-            </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success">Enviar</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+@if (User.Identity.IsAuthenticated)
+{
+    @Html.Action("NewQuestion", "Partials")
+}
 
 <div class="grid">
-    <div class="grid-item">sdfsdf</div>
-    <div class="grid-item">sdfsdf</div>
-    <div class="grid-item">sdfsdf</div>
-    <div class="grid-item">sdfsdf</div>
-    <div class="grid-item">sdfsdf</div>
     @foreach (var item in Model)
     {
-        <div class="grid-item">@item.Content</div>
+        <div class="grid-item">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h2 class="panel-title">@item.Topic.Title</h2>
+                        </div>
+                        <div class="col-md-3">
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <div class="dropdown">
+                                    <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-sm btn-success">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                        <li><a href="">Answer</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="" style="color: red">Delete</a></li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" style="height: 140px">
+                    <p style="font-size: 9.5pt">
+                        @if (item.Content.Length > 140)
+                        {
+                            @item.Content.Substring(0, 140)
+                            <span>...</span>
+                        }
+                        else
+                        {
+                            @item.Content
+                        }
+                    </p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span style="font-size: 9pt; color: gray;">Status: @item.Status</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer" style="font-size:9pt; color:gray;">@item.PublishedAt <br /> <strong>@item.User.Name</strong></div>
+            </div>
+        </div>
     }
 </div>
 
