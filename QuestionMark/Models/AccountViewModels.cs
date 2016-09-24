@@ -65,6 +65,12 @@ namespace QuestionMark.Models
     public class RegisterViewModel
     {
         [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string EnrollmentNumber { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

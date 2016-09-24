@@ -6,6 +6,9 @@
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
+
+@Html.Action("UserInformation", "Partials", new { email = User.Identity.Name })
+
 <div>
     <h4>Change your account settings</h4>
     <hr />
