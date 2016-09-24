@@ -13,7 +13,7 @@ namespace QuestionMark.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201609240032261_QuestionTopic"; }
+            get { return "201609240057121_QuestionTopic"; }
         }
         
         string IMigrationMetadata.Source
