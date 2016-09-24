@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 80px;
     padding-bottom: 20px;
 }
 
@@ -21,4 +21,13 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.grid-item {
+    float: left;
+    width: 20em;
+    height: 20em;
+    padding: 15px;
+    border: 5px solid white;
+    background-color: aquamarine;
 }

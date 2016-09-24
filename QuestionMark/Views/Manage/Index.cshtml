@@ -9,6 +9,27 @@
 
 @Html.Action("UserInformation", "Partials", new { email = User.Identity.Name })
 
+@if (User.IsInRole("Administrator"))
+{
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Administrator</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="@Url.Action("Index", "Topics")" class="list-group-item">
+                            <h4 class="list-group-item-heading"><span class="glyphicon glyphicon-chevron-right"></span> Tópicos</h4>
+                            <p class="list-group-item-text">Gerenciamento de tópicos de discussão</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 <div>
     <h4>Change your account settings</h4>
     <hr />

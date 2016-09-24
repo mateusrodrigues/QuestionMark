@@ -14,6 +14,7 @@ namespace QuestionMark.Migrations
                         QuestionID = c.Int(nullable: false, identity: true),
                         Content = c.String(),
                         Answer = c.String(),
+                        PublishedAt = c.DateTime(nullable: false),
                         Status = c.Int(nullable: false),
                         TopicID = c.Int(nullable: false),
                         UserID = c.String(maxLength: 128),

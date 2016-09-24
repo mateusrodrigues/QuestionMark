@@ -18,6 +18,7 @@ namespace QuestionMark.Models
         public int QuestionID { get; set; }
         public string Content { get; set; }
         public string Answer { get; set; }
+        public DateTime PublishedAt { get; set; }
         public Status Status { get; set; }
 
         public int TopicID { get; set; }
