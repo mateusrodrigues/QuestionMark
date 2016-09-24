@@ -12,7 +12,7 @@
     if (User.IsInRole("Administrator"))
     {
         <script>
-            function requestQuestion(id) {
+           function requestQuestion(id) {
                 $.ajax("/questions/getjson/" + id,
                     {
                         type: "GET"
@@ -103,22 +103,55 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-body" style="height: 140px">
-                    <p style="font-size: 9.5pt">
-                        @if (item.Content.Length > 140)
+                <div class="flip">
+                    <div class="panel-body" style="height: 140px">
+                        @if (item.Status == QuestionMark.Models.Status.Answered)
                         {
-                            @item.Content.Substring(0, 140)
-                            <span>...</span>
+                            <div class="card">
+                                <div class="face front">
+                                    <p style="font-size: 9.5pt">
+                                        @if (item.Content.Length > 140)
+                                        {
+                                            @item.Content.Substring(0, 140)
+                                            <span>...</span>
+                                        }
+                                        else
+                                        {
+                                            @item.Content
+                                        }
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <span style="font-size: 9pt; color: gray;">Status: <strong>@item.Status</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="face back">
+                                    <p style="font-size: 9pt">
+                                        <strong>Resposta:</strong> @item.Answer
+                                    </p>
+                                </div>
+                            </div>
                         }
                         else
                         {
-                            @item.Content
+                            <p style="font-size: 9.5pt">
+                                @if (item.Content.Length > 140)
+                                {
+                                    @item.Content.Substring(0, 140)
+                                    <span>...</span>
+                                }
+                                else
+                                {
+                                    @item.Content
+                                }
+                            </p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span style="font-size: 9pt; color: gray;">Status: <strong>@item.Status</strong></span>
+                                </div>
+                            </div>
                         }
-                    </p>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span style="font-size: 9pt; color: gray;">Status: <strong>@item.Status</strong></span>
-                        </div>
                     </div>
                 </div>
                 <div class="panel-footer" style="font-size:9pt; color:gray;">@item.PublishedAt <br /> <strong>@item.User.Name</strong></div>
@@ -132,6 +165,12 @@
 <script>
     $('.grid').masonry({
         itemSelector: '.grid-item',
+    });
+
+    $(".flip").hover(function () {
+        console.log("HOOOVEEEERRR chegou aqui");
+        $(this).find(".card").toggleClass("flipped");
+        return false;
     });
 </script> 
 }
