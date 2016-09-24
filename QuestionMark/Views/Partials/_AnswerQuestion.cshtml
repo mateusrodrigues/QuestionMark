@@ -1,41 +1,31 @@
-﻿@model QuestionMark.Models.Question
-
-<div class="modal fade" tabindex="-1" role="dialog" id="answerQuestionModal">
+﻿<div class="modal fade" tabindex="-1" role="dialog" id="answerQuestionModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            @using (Html.BeginForm("Answer", "Questions", FormMethod.Post, new { @class = "form-horizontal" }))
-            {
+            <form class="form-horizontal">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Responder Pergunta</h4>
                 </div>
                 <div class="modal-body">
-                    @Html.AntiForgeryToken()
-                    @Html.HiddenFor(m => m.Content)
-                    @Html.HiddenFor(m => m.UserID)
-                    @Html.HiddenFor(m => m.PublishedAt)
-                    @Html.HiddenFor(m => m.TopicID)
-                    @Html.HiddenFor(m => m.QuestionID)
-
+                    <input type="hidden" id="questionIdToAnswer" />
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <label class="control-label col-md-2">Pergunta</label>
                         <div class="col-md-10">
-                            @Model.Content
+                            <p id="questionToAnswer"></p>
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <label class="control-label col-md-2">Resposta:</label>
                         <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.Answer, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
+                            <textarea id="answerToQuestion" class="form-control"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Enviar</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="answerQuestion($('#questionIdToAnswer').val(), $('#answerToQuestion').val())">Enviar</button>
                 </div>
-            }
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

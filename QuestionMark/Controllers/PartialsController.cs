@@ -44,15 +44,9 @@ namespace QuestionMark.Controllers
             return PartialView("_NewQuestion", question);
         }
 
-        public PartialViewResult AnswerQuestion(int id)
+        public PartialViewResult AnswerQuestion()
         {
-            Question model;
-            using (var db = new ApplicationDbContext())
-            {
-                model = db.Questions.Find(id);
-            }
-
-            return PartialView("_AnswerQuestion", model);
+            return PartialView("_AnswerQuestion");
         }
     }
 }
